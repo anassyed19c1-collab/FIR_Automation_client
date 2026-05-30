@@ -49,64 +49,61 @@ export default function FIRForm() {
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 p-8">
+    <main className="min-h-screen p-8" style={{ backgroundColor: "#faf7f2" }}>
       <div className="max-w-2xl mx-auto">
 
         <div className="mb-8">
-          <a href="/" className="text-blue-600 text-sm mb-4 inline-block">← Back</a>
-          <h1 className="text-3xl font-bold text-gray-800">File an FIR</h1>
-          <p className="text-gray-500 mt-2">Fill in your details — AI will do the rest</p>
+          <a href="/" className="text-sm mb-4 inline-block" style={{ color: "#1a4d2e" }}>← Back</a>
+          <h1 className="text-3xl font-bold" style={{ color: "#1a1a1a" }}>File an FIR</h1>
+          <p className="mt-2 text-sm" style={{ color: "#888" }}>Fill in your details — AI will do the rest</p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-sm p-6 space-y-5">
+        <div className="rounded-2xl p-6 space-y-5"
+          style={{ backgroundColor: "white", border: "1px solid rgba(26,77,46,0.1)", boxShadow: "0 4px 24px rgba(26,77,46,0.06)" }}>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
-              Full Name *
-            </label>
+            <label className="block text-sm font-semibold mb-1" style={{ color: "#1a1a1a" }}>Full Name *</label>
             <input
               type="text"
               placeholder="Muhammad Anas"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg px-4 py-3 text-sm outline-none transition-all"
+              style={{ border: "1px solid rgba(26,77,46,0.15)", backgroundColor: "#faf7f2" }}
               value={formData.complainant_name}
               onChange={(e) => setFormData({ ...formData, complainant_name: e.target.value })}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
-              CNIC *
-            </label>
+            <label className="block text-sm font-semibold mb-1" style={{ color: "#1a1a1a" }}>CNIC *</label>
             <input
               type="text"
               placeholder="42101-1234567-1"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg px-4 py-3 text-sm outline-none transition-all"
+              style={{ border: "1px solid rgba(26,77,46,0.15)", backgroundColor: "#faf7f2" }}
               value={formData.cnic}
               onChange={(e) => setFormData({ ...formData, cnic: e.target.value })}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
-              Address
-            </label>
+            <label className="block text-sm font-semibold mb-1" style={{ color: "#1a1a1a" }}>Address</label>
             <input
               type="text"
               placeholder="Gulshan-e-Iqbal, Karachi"
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg px-4 py-3 text-sm outline-none transition-all"
+              style={{ border: "1px solid rgba(26,77,46,0.15)", backgroundColor: "#faf7f2" }}
               value={formData.address}
               onChange={(e) => setFormData({ ...formData, address: e.target.value })}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-1">
-              What happened? Describe in your own words *
-            </label>
+            <label className="block text-sm font-semibold mb-1" style={{ color: "#1a1a1a" }}>What happened? *</label>
             <textarea
               rows={5}
               placeholder="Last night at 11pm my laptop and mobile were stolen at Gulshan Block 10..."
-              className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+              className="w-full rounded-lg px-4 py-3 text-sm outline-none transition-all resize-none"
+              style={{ border: "1px solid rgba(26,77,46,0.15)", backgroundColor: "#faf7f2" }}
               value={formData.incident_text}
               onChange={(e) => setFormData({ ...formData, incident_text: e.target.value })}
             />
@@ -115,7 +112,11 @@ export default function FIRForm() {
           <button
             onClick={handleSubmit}
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300 text-white font-semibold py-4 rounded-xl transition-colors text-lg"
+            className="w-full text-white font-semibold py-4 rounded-xl transition-all text-lg"
+            style={{
+              backgroundColor: loading ? "#888" : "#1a4d2e",
+              boxShadow: loading ? "none" : "0 8px 24px rgba(26,77,46,0.2)"
+            }}
           >
             {loading ? "Generating FIR... ⏳" : "Generate FIR 🚀"}
           </button>
