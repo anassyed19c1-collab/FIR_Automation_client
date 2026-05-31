@@ -11,7 +11,7 @@ export default function FIRPreview() {
   useEffect(() => {
     const fetchFIR = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/fir/${id}`);
+        const response = await fetch(`https://fir-automation-server.onrender.com/api/fir/${id}`);
         const data = await response.json();
         if (data.success) setFir(data.fir);
       } catch (error) {
@@ -24,7 +24,7 @@ export default function FIRPreview() {
   }, [id]);
 
   const downloadPDF = () => {
-    window.open(`http://localhost:5000/api/fir/${id}/pdf`, "_blank");
+    window.open(`https://fir-automation-server.onrender.com/api/fir/${id}/pdf`, "_blank");
   };
 
   if (loading) {
