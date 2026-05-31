@@ -44,7 +44,7 @@ export default function FIRForm() {
   `;
 
     try {
-      const response = await fetch("https://fir-automation-server.onrender.com", {
+      const response = await fetch("https://fir-automation-server.onrender.com/api/fir/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: fullText }),
