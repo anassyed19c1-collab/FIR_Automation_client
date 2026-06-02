@@ -9,6 +9,13 @@ export default function Home() {
   const { scrollYProgress } = useScroll({ target: ref });
   const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <main ref={ref} className="min-h-screen overflow-x-hidden" style={{ backgroundColor: "#faf7f2" }}>
 
@@ -55,18 +62,25 @@ export default function Home() {
 
             {/* Desktop Links */}
             <div className="hidden md:flex items-center gap-1">
-              {["Features", "Process", "About"].map((item) => (
-                <button key={item} className="text-sm px-4 py-1.5 rounded-lg transition-all"
+              {[
+                { label: "Features", id: "features" },
+                { label: "Process", id: "process" },
+                { label: "About", id: "about" },
+              ].map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => scrollToSection(item.id)}
+                  className="text-sm px-4 py-1.5 rounded-lg transition-all"
                   style={{ color: "#555" }}
                   onMouseEnter={e => {
-                    (e.target as HTMLElement).style.color = "#1a4d2e";
-                    (e.target as HTMLElement).style.backgroundColor = "rgba(26,77,46,0.06)";
+                    (e.currentTarget as HTMLElement).style.color = "#1a4d2e";
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(26,77,46,0.06)";
                   }}
                   onMouseLeave={e => {
-                    (e.target as HTMLElement).style.color = "#555";
-                    (e.target as HTMLElement).style.backgroundColor = "transparent";
+                    (e.currentTarget as HTMLElement).style.color = "#555";
+                    (e.currentTarget as HTMLElement).style.backgroundColor = "transparent";
                   }}
-                >{item}</button>
+                >{item.label}</button>
               ))}
             </div>
 
@@ -116,12 +130,19 @@ export default function Home() {
             }}
           >
             <div className="p-4 flex flex-col gap-2">
-              {["Features", "Process", "About"].map((item) => (
-                <button key={item} className="text-sm px-4 py-2.5 rounded-xl text-left transition-all"
+              {[
+                { label: "Features", id: "features" },
+                { label: "Process", id: "process" },
+                { label: "About", id: "about" },
+              ].map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => { scrollToSection(item.id); setMenuOpen(false); }}
+                  className="text-sm px-4 py-2.5 rounded-xl text-left transition-all w-full"
                   style={{ color: "#555" }}
-                  onMouseEnter={e => (e.target as HTMLElement).style.backgroundColor = "rgba(26,77,46,0.06)"}
-                  onMouseLeave={e => (e.target as HTMLElement).style.backgroundColor = "transparent"}
-                >{item}</button>
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.backgroundColor = "rgba(26,77,46,0.06)"}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.backgroundColor = "transparent"}
+                >{item.label}</button>
               ))}
               <Link href="/form"
                 className="text-white text-sm font-semibold px-4 py-3 rounded-xl text-center mt-2"
@@ -151,7 +172,7 @@ export default function Home() {
             <span className="relative inline-flex rounded-full h-2 w-2 bg-green-600" />
           </span>
           <span className="text-xs font-medium" style={{ color: "#1a4d2e" }}>
-            BWAI 2026 · Folio3 Karachi · June 6
+            Your Rights. Your Voice. Our AI.
           </span>
         </motion.div>
 
@@ -233,12 +254,13 @@ export default function Home() {
           ))}
         </motion.div>
 
-        {/* Scroll */}
+        {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2"
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 cursor-pointer"
+          onClick={() => scrollToSection("features")}
         >
           <span className="text-xs" style={{ color: "#aaa" }}>Scroll to explore</span>
           <motion.div
@@ -253,7 +275,7 @@ export default function Home() {
       </section>
 
       {/* Problem vs Solution */}
-      <section className="relative z-10 max-w-6xl mx-auto px-4 md:px-6 py-20 md:py-32">
+      <section id="features" className="relative z-10 max-w-6xl mx-auto px-4 md:px-6 py-20 md:py-32">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -311,7 +333,7 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section className="relative z-10 max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-20"
+      <section id="process" className="relative z-10 max-w-6xl mx-auto px-4 md:px-6 py-16 md:py-20"
         style={{ borderTop: "1px solid rgba(26,77,46,0.08)" }}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -329,9 +351,9 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
-            { num: "1", emoji: "📝", title: "Fill the Form", desc: "Enter your name, CNIC, and describe what happened in plain Urdu or English." },
+            { num: "1", emoji: "💼", title: "Fill the Form", desc: "Enter your name, CNIC, and describe what happened in plain Urdu or English." },
             { num: "2", emoji: "🤖", title: "AI Generates FIR", desc: "3 AI agents extract data, validate completeness, and write a legal FIR in seconds." },
-            { num: "3", emoji: "📄", title: "Download PDF", desc: "Review your FIR and download a print-ready official document instantly." },
+            { num: "3", emoji: "📊", title: "Download PDF", desc: "Review your FIR and download a print-ready official document instantly." },
           ].map((step, i) => (
             <motion.div
               key={i}
@@ -362,7 +384,7 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative z-10 max-w-6xl mx-auto px-4 md:px-6 py-16 pb-24 md:pb-32">
+      <section id="about" className="relative z-10 max-w-6xl mx-auto px-4 md:px-6 py-16 pb-24 md:pb-32">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -413,8 +435,8 @@ export default function Home() {
               style={{ backgroundColor: "#1a4d2e" }}>⚖️</div>
             <span className="text-xs font-medium" style={{ color: "#888" }}>FIR Automation</span>
           </div>
-          <p className="text-xs" style={{ color: "#aaa" }}>Built for BWAI 2026 · Folio3 Karachi · June 6</p>
-          <p className="text-xs" style={{ color: "#aaa" }}>Made with ❤️ in Karachi</p>
+          <p className="text-xs" style={{ color: "#aaa" }}>Your Rights. Your Voice. Our AI.</p>
+          <p className="text-xs" style={{ color: "#aaa" }}>© 2026 FIR Automation · All Rights Reserved</p>
         </div>
       </footer>
 

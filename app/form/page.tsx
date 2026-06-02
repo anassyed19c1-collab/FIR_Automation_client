@@ -17,9 +17,9 @@ export default function FIRForm() {
 
   const steps = [
     { icon: "🔍", text: "Extracting information from your description..." },
-    { icon: "✅", text: "Validating FIR completeness..." },
+    { icon: "⚖️", text: "Validating FIR completeness..." },
     { icon: "📝", text: "Writing legal FIR document..." },
-    { icon: "💾", text: "Saving to database..." },
+    { icon: "🔒", text: "Saving to database..." },
   ];
 
   const handleSubmit = async () => {
@@ -131,7 +131,7 @@ export default function FIRForm() {
                   style={{ borderColor: "rgba(26,77,46,0.15)", borderTopColor: "#1a4d2e" }}
                 />
                 <h3 className="font-bold text-lg" style={{ color: "#1a1a1a" }}>
-                  {currentStep === 4 ? "FIR Generated! ✅" : "Generating your FIR..."}
+                  {currentStep === 4 ? "FIR Generated!" : "Generating your FIR..."}
                 </h3>
                 <p className="text-sm mt-1" style={{ color: "#888" }}>
                   {currentStep === 4 ? "Redirecting to preview..." : "Please wait, AI is working"}
@@ -219,7 +219,7 @@ export default function FIRForm() {
                 <label className="block text-sm font-semibold mb-1.5" style={{ color: "#1a1a1a" }}>Full Name *</label>
                 <input
                   type="text"
-                  placeholder="Muhammad Anas"
+                  placeholder="Ahmed Khan"
                   className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all"
                   style={{ border: "1px solid rgba(26,77,46,0.15)", backgroundColor: "#faf7f2", color: "#1a1a1a" }}
                   value={formData.complainant_name}
@@ -279,7 +279,7 @@ export default function FIRForm() {
                 className="w-full text-white font-bold py-4 rounded-xl transition-all text-base"
                 style={{ backgroundColor: "#1a4d2e", boxShadow: "0 8px 24px rgba(26,77,46,0.2)" }}
               >
-                Generate FIR 🚀
+                Generate FIR 
               </button>
             </motion.div>
           )}
